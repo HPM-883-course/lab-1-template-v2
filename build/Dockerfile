@@ -26,10 +26,7 @@ RUN apt-get update \
  
 # Clean Up apt-get cache
 RUN apt-get clean \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /var/lib/rstudio-server/r-versions
-
-RUN echo "tail -f /dev/null" >> /usr/sbin/rstudio-server
+  && rm -rf /var/lib/apt/lists/*
 
 RUN R -e "install.packages( \
   c( \

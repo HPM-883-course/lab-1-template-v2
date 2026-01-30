@@ -46,18 +46,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            # Set latest tag for default branch
-            type=raw,value=latest,enable={{is_default_branch}}
-            # Tag with branch name
-            type=ref,event=branch
-            # Tag with PR number
-            type=ref,event=pr
-            # Tag with git tag (v1.0.0 -> 1.0.0)
-            type=semver,pattern={{version}}
-            # Tag with major.minor (v1.0.0 -> 1.0)
-            type=semver,pattern={{major}}.{{minor}}
-            # Tag with sha
-            type=sha,prefix=
+            |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_tag_name.outputs.tag_name }}
 
       - name: Build and push Docker image
         id: push
