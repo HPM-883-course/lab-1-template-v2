@@ -45,8 +45,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.get_tag_name.outputs.tag_name }}
+            hpm-883-course/lab-1-template-v2:latest
+            hpm-883-course/lab-1-template-v2:${{ steps.get_tag_name.outputs.tag_name }}
 
       - name: Build and push Docker image
         id: push
